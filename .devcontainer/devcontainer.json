@@ -1,0 +1,23 @@
+{
+  "name": "MatchCore — C++17",
+  "image": "mcr.microsoft.com/devcontainers/cpp:debian-12",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {}
+  },
+  "postCreateCommand": "cmake -S . -B build && cmake --build build",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cpptools-extension-pack",
+        "ms-vscode.cmake-tools",
+        "twxs.cmake"
+      ],
+      "settings": {
+        "cmake.configureOnOpen": true,
+        "C_Cpp.default.cppStandard": "c++17"
+      }
+    }
+  },
+  "remoteUser": "vscode"
+}
