@@ -25,7 +25,8 @@ std::vector<Fill> OrderBook::match(Order* incoming) {
                 break;
             }
 
-            for (size_t i = 0; i < level.orders.size(); ++i) {
+            size_t i = 0;
+            while (i < level.orders.size()) {
                 Order* resting = level.orders[i];
                 int64_t traded = std::min(incoming->quantity, resting->quantity);
 
@@ -45,6 +46,8 @@ std::vector<Fill> OrderBook::match(Order* incoming) {
                     resting->status = OrderStatus::Filled;
                     index_.erase(resting->id);
                     level.orders.erase(level.orders.begin() + i);
+                } else {
+                    ++i;
                 }
 
                 if (incoming->quantity == 0) break;
@@ -61,7 +64,8 @@ std::vector<Fill> OrderBook::match(Order* incoming) {
                 break;
             }
 
-            for (size_t i = 0; i < level.orders.size(); ++i) {
+            size_t i = 0;
+            while (i < level.orders.size()) {
                 Order* resting = level.orders[i];
                 int64_t traded = std::min(incoming->quantity, resting->quantity);
 
@@ -81,6 +85,8 @@ std::vector<Fill> OrderBook::match(Order* incoming) {
                     resting->status = OrderStatus::Filled;
                     index_.erase(resting->id);
                     level.orders.erase(level.orders.begin() + i);
+                } else {
+                    ++i;
                 }
 
                 if (incoming->quantity == 0) break;
